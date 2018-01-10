@@ -14,4 +14,4 @@ SETUP :
 
 6. Open Postman and test http://localhost:5000/api/login to generate token. Be sure to copy the value(without the semicolons).
 
-7. In Postman, test another route http://localhost:5000/api/posts and in the Headers section, add `Authorization`, and for the value, add the token value. Click Send. In the Body section, the values should be displayed.
+7. In Postman, test another route http://localhost:5000/api/posts and in the Headers section, add `Authorization`, and for the value, add Bearer + token value. Example: Bearer testtokenvalue123. Click Send. In the Body section, the values should be displayed.
