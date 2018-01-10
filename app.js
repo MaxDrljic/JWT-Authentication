@@ -10,9 +10,16 @@ app.get('/api', (req, res) => {
 });
 
 app.post('/api/posts', verifyToken, (req, res) => {
-    res.json({
-        message: 'Post created'
-    });
+    jwt.verify(req.token, 'secretkey', (err, authData) => {
+        if (err) {
+            res.sendStatus(403);
+        } else {
+            res.json({
+                message: 'Post created',
+                authData
+            });
+        }
+    });  
 });
 
 app.post('/api/login', (req, res) => {
@@ -23,7 +30,7 @@ app.post('/api/login', (req, res) => {
         email: 'max@gmail.com'
     }
 
-    jwt.sign({ user }, 'secretkey', (err, token) => {
+    jwt.sign({ user }, 'secretkey', { expiresIn: '30s' }, (err, token) => {
         res.json({
             token
         });
